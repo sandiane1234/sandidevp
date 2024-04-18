@@ -6,7 +6,17 @@ sudo apt install docker.io -y
 sudo chmod 666 /var/run/docker.sock
 
 ##install kubelet
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+  
+ ###If you do not have root access on the target system, you can still install kubectl to the ~/.local/bin directory:
+  
+ chmod +x kubectl
+mkdir -p ~/.local/bin
+mv ./kubectl ~/.local/bin/kubectl
+# and then append (or prepend) ~/.local/bin to $PATH
 
+kubectl version --client
+## now setup kubelet and kubeadm
 sudo apt-get update
 sudo apt-get install -y apt-transport-https ca-certificates curl gpg
 sudo mkdir -p -m 755 /etc/apt/keyrings
